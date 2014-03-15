@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "bindings": "*",
-    "nan": "~0.7.0"
+    "nan": "git://github.com/rvagg/nan.git#cleanup"
   },
   "engines": {
     "node": ">= 0.6.0"
