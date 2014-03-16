@@ -28,7 +28,6 @@ static void *tryParentize(const redisReadTask *task, const Local<Value> &v) {
          * its parent array. */
         vidx = pidx+1;
         if (v->IsArray()) {
-            NanDisposePersistent(r->handle[vidx]);
             NanAssignPersistent(r->handle[vidx], v);
             return (void*)vidx;
         } else {
