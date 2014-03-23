@@ -18,7 +18,7 @@ static void *tryParentize(const redisReadTask *task, const Local<Value> &v) {
         assert(pidx > 0 && pidx < 9);
 
         /* When there is a parent, it should be an array. */
-        Local<Value> lvalue = NanPersistentToLocal(r->handle[pidx]);
+        Local<Value> lvalue = NanNew(r->handle[pidx]);
         assert(lvalue->IsArray());
         Local<Array> larray = lvalue.As<Array>();
         larray->Set(task->idx,v);
@@ -217,7 +217,7 @@ NAN_METHOD(Reader::Get) {
         } else {
             /* Complete replies should always have a root object at index 1. */
             assert((size_t)index == 1);
-            reply = NanNew(NanPersistentToLocal(r->handle[1]));
+            reply = NanNew(NanNew(r->handle[1]));
 
             /* Dispose and clear used handles. */
             for (i = 1; i < 3; i++) {
